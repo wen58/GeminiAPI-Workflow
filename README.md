@@ -12,7 +12,6 @@
 
 ## 📁 檔案結構
 
-```text
 .
 ├── .env.secret.example      # 存放 GEMINI_API_KEY (不進版本控制)
 ├── prompt.yaml              # AI 指令、模型參數與提詞範本
