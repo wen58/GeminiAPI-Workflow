@@ -1,0 +1,7 @@
+google-genai==1.73.1
+pandas==3.0.2
+python-dotenv==1.2.2
+PyYAML==6.0.3
+Markdown==3.10.2
+beautifulsoup4==4.14.3
+requests==2.33.1

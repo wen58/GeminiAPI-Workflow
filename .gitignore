@@ -1,0 +1,7 @@
+.env.secret
+__pycache__/
+.venv/
+.vscode/
+doc/
+.DS_Store
+test.ipynb
