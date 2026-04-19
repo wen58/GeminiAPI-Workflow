@@ -4,3 +4,4 @@ __pycache__/
 .vscode/
 .DS_Store
 test.ipynb
+doc/analysis_report.html
