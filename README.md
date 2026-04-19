@@ -1,31 +1,43 @@
-```markdown
-# 🏛️ Wen58 News Intelligence System
+### 自動化 AI 分析：台新新光集團併購分析
 
-這是一個專為金融資訊愛好者設計的自動化新聞分析系統。它能從多個來源（如台新官網、中央社）抓取資訊，利用 **Gemini 2.5 Flash** 進行跨篇章的深度摘要，最後產出一份 HTML 分析報告。
+```markdown
+## 🏛️  News Intelligence System
+- 台新新光集團合併新聞分析報告
+- 從多個來源台新官網、中央社新聞抓取資訊，利用 Gemini 2.5 Flash 進行摘要分析，最後產出一份 HTML 報告。
+- 每日 UTC+8 8:00 自動化執行：抓取新聞資料、整合文章分析、自動上傳分析報告至Github。
 
 ## 🌟 核心功能
 
-- **多源數據整合**：自動合併爬蟲檔案。
-- **批量提詞工程 (Bulk Prompting)**：一次處理 5-10 篇新聞，節省 API 額度並進行跨篇章對比。
-- **安全性設計**：金鑰與程式碼分離，透過 `.env.secret` 嚴密保護 API Key。
+- 多源數據整合：自動合併爬蟲檔案。
+- 自動化提示詞管理：一次處理 5-10 篇新聞，節省 API 額度並進行跨篇章對比。
+- 安全性設計：金鑰與程式碼分離，透過 `.env.secret` 嚴密保護 API Key。
 
 
 ## 📁 檔案結構
 
 .
-├── .env.secret.example      # 存放 GEMINI_API_KEY (不進版本控制)
-├── prompt.yaml              # AI 指令、模型參數與提詞範本
-├── main.py                  # 主執行程式：抓取、合併、呼叫 API
-├── make_html.py             # 轉檔程式：Markdown 轉高質感 HTML
-├── taishin_news_wen58.csv   # 台新官網爬蟲結果
-├── cna_news_wen58.csv       # 中央社新聞爬蟲結果
-├── analysis_report.md       # AI 生成的原始分析文件
-├── analysis_report.html     # 最終生成的視覺化報告
-└── requirements.txt         # 專案套件清單
+├── .github/workflows/
+│   └── daily_news.yml           # GitHub Actions 自動化排程腳本
+├── doc/                         # 報告與爬蟲資料輸出目錄
+│   ├── analysis_report.html     # 最終生成的視覺化報告
+│   ├── analysis_report.md       # AI 生成的原始分析文件
+│   ├── cna_news_wen58.csv       # 中央社新聞爬蟲結果
+│   └── taishin_news_wen58.csv   # 台新官網爬蟲結果
+├── src/                         # 程式碼目錄
+│   ├── config/
+│   │   └── prompt.yaml          # AI 指令、模型參數與範本
+│   ├── api_connect.py           # API 連線與呼叫處理模組
+│   ├── main.py                  # 主執行程式：抓取、合併、呼叫 API
+│   ├── make_html.py             # 轉檔程式：Markdown 轉 HTML
+│   └── search_news.py           # 新聞爬蟲模組
+├── .env.secret.example          # 環境變數設定範本
+├── .gitignore                   # Git 忽略檔案清單
+├── README.md                    # 專案說明文件
+└── requirements.txt             # 專案套件依賴清單
 ```
 
 ### 1. 環境準備
-確保你的電腦已安裝 Python 3.10+，並建議使用虛擬環境：
+安裝 Python 3.10+，並建議使用虛擬環境：
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -33,7 +45,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. 設定金鑰
-在專案目錄建立 `.env.secret.example`，並寫入個人.env.secret 並寫入 Google AI API Key：
+建立 `.env.secret.example`，並寫入個人.env.secret 並寫入 Google AI API Key：
 ```text
 GEMINI_API_KEY=YOUR_API_KEY_HERE
 ```
@@ -54,5 +66,3 @@ python3 main.py
 - `markdown`：分析報告格式轉換
 
 ---
-**Prepared by Wen-Chien Shih (Wen58)** *Data Scientist / Statistician based in Taipei*
-``` 
