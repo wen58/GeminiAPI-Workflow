@@ -1,0 +1,47 @@
+name: Daily News Intelligence
+
+# 設定觸發條件
+on:
+  schedule:
+    # 這是 UTC 時間，00:00 等於台灣時間早上 08:00
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允許你隨時在網頁上手動點擊執行，方便測試
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest # 使用 GitHub 提供的免費 Linux 伺服器
+
+    steps:
+    - name: 1. 取得最新程式碼
+      uses: actions/checkout@v4
+
+    - name: 2. 安裝 Python 環境
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: 3. 安裝依賴套件 (Requirements)
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: 4. 執行爬蟲與 AI 分析
+      env:
+        # 從剛才設定的保險箱把金鑰拿出來，放進環境變數
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        # 執行我們寫好的主程式
+        python src/main.py
+
+    - name: 5. 將最新報告存回 GitHub
+      run: |
+        # 設定 GitHub 機器人的身分
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 強制加入產出的 HTML 報告 (因為我們之前在 .gitignore 忽略了它)
+        git add -f analysis_report.html
+        
+        # 提交並推送到專案
+        git commit -m "🤖 Auto-update: Daily News Intelligence Report" || echo "今天沒有新資料或變化"
+        git push
