@@ -69,7 +69,7 @@ python3 main.py
 * [查看最新 AI 分析報告](./doc/analysis_report.html)
 * [原始爬蟲資料 - 台新官網](./doc/taishin_news_wen58.csv)
 * [原始爬蟲資料 - 中央社新聞](./doc/cna_news_wen58.csv)
-
+![報告預覽](./doc/picture/demo.png)
 
 ## 🛠️ 開發套件
 
