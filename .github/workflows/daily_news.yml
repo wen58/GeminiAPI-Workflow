@@ -6,6 +6,9 @@ on:
     # 這是 UTC 時間，00:00 等於台灣時間早上 08:00
     - cron: '0 0 * * *'
   workflow_dispatch: # 允許你隨時在網頁上手動點擊執行，方便測試
+  
+permissions:
+  contents: write
 
 jobs:
   run-analysis:
