@@ -108,7 +108,7 @@ def crawl_taishin_holdings_news():
             final_data.append({"更新時間": update_time, "標題": title, "作者": "wen58", "內容": content})
             
         df = pd.DataFrame(final_data)
-        df.to_csv("taishin_news_wen58.csv", index=False, encoding="utf-8-sig")
+        df.to_csv("doc/taishin_news_wen58.csv", index=False, encoding="utf-8-sig")
         print("✨ 台新金控 CSV 已儲存。")
     finally:
         driver.quit()
@@ -153,14 +153,14 @@ def crawl_cna_news():
             final_data.append({"更新時間": update_time, "標題": title, "作者": "wen58", "內容": content})
             
         df = pd.DataFrame(final_data)
-        df.to_csv("cna_news_wen58.csv", index=False, encoding="utf-8-sig")
+        df.to_csv("doc/cna_news_wen58.csv", index=False, encoding="utf-8-sig")
         print("✨ 中央社 CSV 已儲存。")
     finally:
         driver.quit()
 
 # ==========================================
 # 主執行程式入口
-# ==========================================
+# ==========================================. 
 if __name__ == "__main__":
     # 執行你想要的區塊 (可以註解掉不需要的部分)
     # run_gemini_test()
