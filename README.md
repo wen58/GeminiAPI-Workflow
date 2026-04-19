@@ -2,13 +2,14 @@
 
 ```markdown
 ## 🏛️  News Intelligence System
+
 - 台新新光集團合併新聞分析報告
 - 從多個來源台新官網、中央社新聞抓取資訊，利用 Gemini 2.5 Flash 進行摘要分析，最後產出一份 HTML 報告。
-- 每日 UTC+8 8:00 自動化執行：抓取新聞資料、整合文章分析、自動上傳分析報告至Github。
+- 導入了 CI/CD 自動化工作流，利用 GitHub Actions 追蹤每日 UTC+8 8:00 自動化執行抓取新聞資料、整合文章分析、自動上傳分析報告至Github。
 
 ## 🌟 核心功能
 
-- 多源數據整合：自動合併爬蟲檔案。
+- 多源資料整合：自動合併爬蟲檔案。
 - 自動化提示詞管理：一次處理 5-10 篇新聞，節省 API 額度並進行跨篇章對比。
 - 安全性設計：金鑰與程式碼分離，透過 `.env.secret` 嚴密保護 API Key。
 
@@ -40,7 +41,7 @@
 安裝 Python 3.10+，並建議使用虛擬環境：
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate # On Mac
 pip install -r requirements.txt
 ```
 
@@ -57,6 +58,18 @@ GEMINI_API_KEY=YOUR_API_KEY_HERE
 ```bash
 python3 main.py
 ```
+
+### 5. 報告產出
+利用Gemini 2.5 Flash 進行摘要分析產出doc/analysis_report.html的分析報告。
+* **事件總結**：精煉當日核心金融新聞，去除冗餘雜訊。
+* **進度追蹤**：鎖定特定金控併購、法說會或重大案件之最新動態。
+* **風險與機會**：AI 深度剖析市場潛在威脅與投資/佈局契機。
+
+### 6. 產出結果
+* [查看最新 AI 分析報告](./doc/analysis_report.html)
+* [原始爬蟲資料 - 台新官網](./doc/taishin_news_wen58.csv)
+* [原始爬蟲資料 - 中央社新聞](./doc/cna_news_wen58.csv)
+
 
 ## 🛠️ 開發套件
 

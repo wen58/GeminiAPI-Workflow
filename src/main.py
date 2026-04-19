@@ -34,5 +34,5 @@ if __name__ == "__main__":
             f.write(summary)
 
         # 5. 生成報告 (從 apitool 來的)
-        md_to_ivory_html(md_file="doc/analysis_report.md", html_file="doc/analysis_report.html")
+        md_to_ivory_html(md_file="./doc/analysis_report.md", html_file="./doc/analysis_report.html")
         print("\n🏁 全自動流程完成！請查看 analysis_report.html")
