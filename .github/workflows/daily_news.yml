@@ -35,13 +35,11 @@ jobs:
 
     - name: 5. 將最新報告存回 GitHub
       run: |
-        # 設定 GitHub 機器人的身分
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # 強制加入產出的 HTML 報告 (因為我們之前在 .gitignore 忽略了它)
-        git add -f analysis_report.html
+        # 🌟 這裡加上 doc/，告訴機器人去 doc 資料夾裡面拿檔案
+        git add -f doc/analysis_report.html
         
-        # 提交並推送到專案
-        git commit -m "🤖 Auto-update: Daily News Intelligence Report" || echo "今天沒有新資料或變化"
-        git push
+        git commit -m "Auto-update: Daily News Intelligence Report" || echo "今天沒有新資料或變化"
+        git push origin main 
